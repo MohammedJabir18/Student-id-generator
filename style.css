@@ -328,3 +328,39 @@ body {
 @keyframes tooltipShow {
     to { opacity: 1; }
 }
+
+/* Custom radio button styles */
+.radio-label {
+    display: inline-block;
+    cursor: pointer;
+    position: relative;
+}
+
+.radio-input {
+    display: none; /* Hide the default radio button */
+}
+
+.radio-custom {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 10px 20px;
+    border-radius: 50px;
+    background: rgba(255, 255, 255, 0.3);
+    color: white;
+    font-weight: 600;
+    transition: all 0.3s ease;
+    border: 2px solid transparent;
+}
+
+.radio-input:checked + .radio-custom {
+    background: linear-gradient(135deg, #667eea, #764ba2);
+    border-color: rgba(255, 255, 255, 0.8);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    transform: translateY(-2px);
+}
+
+.radio-label:hover .radio-custom {
+    background: rgba(255, 255, 255, 0.5);
+}
+

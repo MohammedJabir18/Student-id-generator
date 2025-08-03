@@ -17,6 +17,7 @@
     <!-- Progress indicator -->
     <div class="progress-indicator">
         <div class="progress-bar" id="progressBar"></div>
+    </div>
 
     <div class="min-h-screen py-8 px-4">
         <!-- Header -->
@@ -220,9 +221,28 @@
                                     <span id="cardAddressMobile">Address: N. C. College (Karimganj, Assam) — Mobile: 9162830269</span>
                                 </div>
                             </div>
+                            
+                            <!-- Download Options -->
+                            <div id="downloadOptions" class="mt-6 text-center">
+                                <h3 class="text-lg font-semibold text-white mb-3">Choose Download Format</h3>
+                                <div class="flex justify-center items-center gap-4">
+                                    <label class="radio-label">
+                                        <input type="radio" name="format" value="png" class="radio-input">
+                                        <span class="radio-custom"><i class="fas fa-image"></i> PNG</span>
+                                    </label>
+                                    <label class="radio-label">
+                                        <input type="radio" name="format" value="pdf" class="radio-input">
+                                        <span class="radio-custom"><i class="fas fa-file-pdf"></i> PDF</span>
+                                    </label>
+                                    <label class="radio-label">
+                                        <input type="radio" name="format" value="both" checked class="radio-input">
+                                        <span class="radio-custom"><i class="fas fa-copy"></i> Both</span>
+                                    </label>
+                                </div>
+                            </div>
 
                             <!-- Download Button -->
-                            <button id="downloadCardButton" class="btn-gradient text-white font-bold py-4 px-8 rounded-full mt-8 flex items-center gap-3 text-lg tooltip" data-tooltip="Download as PNG and PDF">
+                            <button id="downloadCardButton" class="btn-gradient text-white font-bold py-4 px-8 rounded-full mt-8 flex items-center gap-3 text-lg tooltip" data-tooltip="Download ID Card">
                                 <i class="fas fa-download"></i>
                                 Download ID Card
                             </button>
@@ -275,3 +295,4 @@
     <script src="script.js"></script>
 </body>
 </html>
+

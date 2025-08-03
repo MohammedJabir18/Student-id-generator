@@ -125,12 +125,38 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 });
 
+// Download functions
+async function downloadAsPNG(canvas, studentName) {
+    const pngUrl = canvas.toDataURL('image/png');
+    const pngLink = document.createElement('a');
+    pngLink.href = pngUrl;
+    pngLink.download = `${studentName}_id_card.png`;
+    document.body.appendChild(pngLink);
+    pngLink.click();
+    document.body.removeChild(pngLink);
+}
+
+async function downloadAsPDF(canvas, studentName) {
+    const { jsPDF } = window.jspdf;
+    const pdfWidth = 53.34;
+    const pdfHeight = 86.36;
+
+    const pdf = new jsPDF({
+        orientation: 'portrait',
+        unit: 'mm',
+        format: [pdfWidth, pdfHeight]
+    });
+
+    const imgData = canvas.toDataURL('image/png');
+    pdf.addImage(imgData, 'PNG', 0, 0, pdfWidth, pdfHeight);
+    pdf.save(`${studentName}_id_card.pdf`);
+}
+
 // Enhanced download functionality
 document.getElementById('downloadCardButton').addEventListener('click', async () => {
     const card = document.getElementById('idCardPreview');
     const button = document.getElementById('downloadCardButton');
     
-    // Button loading state
     const originalText = button.innerHTML;
     button.innerHTML = '<i class="fas fa-spinner fa-spin mr-2"></i>Generating...';
     button.disabled = true;
@@ -141,7 +167,6 @@ document.getElementById('downloadCardButton').addEventListener('click', async ()
         updateProgress(20);
         showMessage("Generating your professional ID card...", "info");
 
-        updateProgress(40);
         const canvas = await html2canvas(card, {
             scale: scaleFactor,
             useCORS: true,
@@ -153,39 +178,28 @@ document.getElementById('downloadCardButton').addEventListener('click', async ()
             windowWidth: document.documentElement.offsetWidth,
             windowHeight: document.documentElement.offsetHeight
         });
-
         updateProgress(60);
+
         const studentName = document.getElementById('nameInput').value.replace(/ /g, '_') || 'student';
+        const format = document.querySelector('input[name="format"]:checked').value;
 
-        // PNG Download
-        updateProgress(70);
-        const pngUrl = canvas.toDataURL('image/png');
-        const pngLink = document.createElement('a');
-        pngLink.href = pngUrl;
-        pngLink.download = `${studentName}_id_card.png`;
-        document.body.appendChild(pngLink);
-        pngLink.click();
-        document.body.removeChild(pngLink);
+        if (format === 'png' || format === 'both') {
+            await downloadAsPNG(canvas, studentName);
+            updateProgress(80);
+        }
 
-        // PDF Download
-        updateProgress(85);
-        const { jsPDF } = window.jspdf;
-        const pdfWidth = 53.34;
-        const pdfHeight = 86.36;
-
-        const pdf = new jsPDF({
-            orientation: 'portrait',
-            unit: 'mm',
-            format: [pdfWidth, pdfHeight]
-        });
-
-        const imgData = canvas.toDataURL('image/png');
-        pdf.addImage(imgData, 'PNG', 0, 0, pdfWidth, pdfHeight);
-        pdf.save(`${studentName}_id_card.pdf`);
+        if (format === 'pdf' || format === 'both') {
+            await downloadAsPDF(canvas, studentName);
+            updateProgress(100);
+        }
         
-        updateProgress(100);
         setTimeout(() => {
-            showMessage("🎉 ID card downloaded successfully as PNG and PDF!", "success");
+            let successMessage = "🎉 ID card downloaded successfully!";
+            if (format === 'png') successMessage = "🎉 PNG downloaded successfully!";
+            if (format === 'pdf') successMessage = "🎉 PDF downloaded successfully!";
+            if (format === 'both') successMessage = "🎉 PNG and PDF downloaded successfully!";
+            
+            showMessage(successMessage, "success");
             updateProgress(0);
         }, 500);
 
@@ -194,7 +208,6 @@ document.getElementById('downloadCardButton').addEventListener('click', async ()
         showMessage("❌ Failed to generate card. Please try again.", "error");
         updateProgress(0);
     } finally {
-        // Reset button
         button.innerHTML = originalText;
         button.disabled = false;
     }
