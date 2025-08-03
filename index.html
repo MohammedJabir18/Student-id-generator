@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Professional Student ID Card Generator</title>
+    <!-- Tailwind CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <!-- Font Awesome for icons -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.0/css/all.min.css">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Poppins:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="style.css">
+</head>
+<body class="animated-bg">
+    <!-- Progress indicator -->
+    <div class="progress-indicator">
+        <div class="progress-bar" id="progressBar"></div>
+
+    <div class="min-h-screen py-8 px-4">
+        <!-- Header -->
+        <div class="text-center mb-12 section-enter">
+            <h1 class="text-5xl font-bold text-white mb-4 tracking-tight">
+                <i class="fas fa-id-card mr-4"></i>
+                Professional ID Card Generator
+            </h1>
+            <p class="text-xl text-white opacity-90">Create stunning student ID cards with modern design</p>
+        </div>
+
+        <!-- Main Content -->
+        <div class="max-w-7xl mx-auto">
+            <div class="flex flex-col lg:flex-row gap-8">
+                <!-- Left Panel: Editor -->
+                <div class="lg:w-1/2">
+                    <div class="glass rounded-3xl p-8 card-hover section-enter">
+                        <h2 class="text-2xl font-bold text-white mb-8 flex items-center">
+                            <i class="fas fa-edit mr-3"></i>
+                            ID Card Editor
+                        </h2>
+
+                        <div class="space-y-6">
+                            <!-- Upload Sections -->
+                            <div class="grid grid-cols-1 gap-6">
+                                <!-- College Logo Upload -->
+                                <div class="space-y-3">
+                                    <label class="block text-sm font-semibold text-white opacity-90">
+                                        <i class="fas fa-university mr-2"></i>
+                                        College Logo
+                                    </label>
+                                    <label for="collegeLogoUpload" class="file-upload-btn tooltip" data-tooltip="Upload college logo">
+                                        <i class="fas fa-upload"></i>
+                                        Choose Logo
+                                    </label>
+                                    <input type="file" id="collegeLogoUpload" accept="image/*" class="hidden">
+                                </div>
+
+                                <!-- Student Photo Upload -->
+                                <div class="space-y-3">
+                                    <label class="block text-sm font-semibold text-white opacity-90">
+                                        <i class="fas fa-user mr-2"></i>
+                                        Student Photo
+                                    </label>
+                                    <label for="studentPhotoUpload" class="file-upload-btn tooltip" data-tooltip="Upload student photo">
+                                        <i class="fas fa-camera"></i>
+                                        Choose Photo
+                                    </label>
+                                    <input type="file" id="studentPhotoUpload" accept="image/*" class="hidden">
+                                </div>
+
+                                <!-- Principal Signature Upload -->
+                                <div class="space-y-3">
+                                    <label class="block text-sm font-semibold text-white opacity-90">
+                                        <i class="fas fa-signature mr-2"></i>
+                                        Principal Signature
+                                    </label>
+                                    <label for="principalSignatureUpload" class="file-upload-btn tooltip" data-tooltip="Upload principal signature">
+                                        <i class="fas fa-pen-fancy"></i>
+                                        Choose Signature
+                                    </label>
+                                    <input type="file" id="principalSignatureUpload" accept="image/*" class="hidden">
+                                </div>
+                            </div>
+
+                            <!-- Text Fields -->
+                            <div class="grid grid-cols-1 gap-4">
+                                <div>
+                                    <label for="collegeNameInput" class="block text-sm font-semibold text-white opacity-90 mb-2">
+                                        <i class="fas fa-school mr-2"></i>College Name
+                                    </label>
+                                    <input type="text" id="collegeNameInput" placeholder="N. C. College (Karimganj, Assam)" 
+                                           value="N. C. College (Karimganj, Assam)" 
+                                           class="w-full input-enhanced px-4 py-3 text-gray-800 placeholder-gray-500 focus:outline-none">
+                                </div>
+
+                                <div>
+                                    <label for="nameInput" class="block text-sm font-semibold text-white opacity-90 mb-2">
+                                        <i class="fas fa-user-tag mr-2"></i>Student Name
+                                    </label>
+                                    <input type="text" id="nameInput" placeholder="Anil Kumar" value="Anil Kumar" 
+                                           class="w-full input-enhanced px-4 py-3 text-gray-800 placeholder-gray-500 focus:outline-none">
+                                </div>
+
+                                <div class="grid grid-cols-2 gap-4">
+                                    <div>
+                                        <label for="classInput" class="block text-sm font-semibold text-white opacity-90 mb-2">
+                                            <i class="fas fa-graduation-cap mr-2"></i>Class
+                                        </label>
+                                        <input type="text" id="classInput" placeholder="12" value="12" 
+                                               class="w-full input-enhanced px-4 py-3 text-gray-800 placeholder-gray-500 focus:outline-none">
+                                    </div>
+                                    <div>
+                                        <label for="rollNumberInput" class="block text-sm font-semibold text-white opacity-90 mb-2">
+                                            <i class="fas fa-hashtag mr-2"></i>Roll Number
+                                        </label>
+                                        <input type="text" id="rollNumberInput" placeholder="55" value="55" 
+                                               class="w-full input-enhanced px-4 py-3 text-gray-800 placeholder-gray-500 focus:outline-none">
+                                    </div>
+                                </div>
+
+                                <div class="grid grid-cols-2 gap-4">
+                                    <div>
+                                        <label for="dobInput" class="block text-sm font-semibold text-white opacity-90 mb-2">
+                                            <i class="fas fa-calendar-alt mr-2"></i>Date of Birth
+                                        </label>
+                                        <input type="date" id="dobInput" value="2000-05-09" 
+                                               class="w-full input-enhanced px-4 py-3 text-gray-800 focus:outline-none">
+                                    </div>
+                                    <div>
+                                        <label for="yearInput" class="block text-sm font-semibold text-white opacity-90 mb-2">
+                                            <i class="fas fa-calendar mr-2"></i>Year
+                                        </label>
+                                        <input type="text" id="yearInput" placeholder="2025" value="2025" 
+                                               class="w-full input-enhanced px-4 py-3 text-gray-800 placeholder-gray-500 focus:outline-none">
+                                    </div>
+                                </div>
+
+                                <div>
+                                    <label for="addressInput" class="block text-sm font-semibold text-white opacity-90 mb-2">
+                                        <i class="fas fa-map-marker-alt mr-2"></i>Address
+                                    </label>
+                                    <input type="text" id="addressInput" placeholder="N. C. College (Karimganj, Assam)" 
+                                           value="N. C. College (Karimganj, Assam)" 
+                                           class="w-full input-enhanced px-4 py-3 text-gray-800 placeholder-gray-500 focus:outline-none">
+                                </div>
+
+                                <div>
+                                    <label for="mobileInput" class="block text-sm font-semibold text-white opacity-90 mb-2">
+                                        <i class="fas fa-phone mr-2"></i>Mobile Number
+                                    </label>
+                                    <input type="tel" id="mobileInput" placeholder="9162830269" value="9162830269" 
+                                           class="w-full input-enhanced px-4 py-3 text-gray-800 placeholder-gray-500 focus:outline-none">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Right Panel: Preview -->
+                <div class="lg:w-1/2">
+                    <div class="glass rounded-3xl p-8 card-hover section-enter">
+                        <h2 class="text-2xl font-bold text-white mb-8 flex items-center">
+                            <i class="fas fa-eye mr-3"></i>
+                            Live Preview
+                        </h2>
+
+                        <div class="flex flex-col items-center">
+                            <!-- ID Card Preview -->
+                            <div id="idCardPreview" class="id-card-container float-animation">
+                                <!-- Top Section: Logo and College Name -->
+                                <div class="flex items-center w-full mb-2">
+                                    <img id="cardLogo" src="https://placehold.co/50x50/E0E7FF/4F46E5?text=Logo" 
+                                         alt="College Logo" class="w-12 h-12 rounded-full object-cover mr-2 border-2 border-gray-200 flex-shrink-0" 
+                                         onerror="this.onerror=null;this.src='https://placehold.co/50x50/E0E7FF/4F46E5?text=Logo';">
+                                    <h1 id="cardCollegeName" class="text-xs font-extrabold text-center flex-grow text-gray-800">
+                                        N. C. College (Karimganj, Assam)
+                                    </h1>
+                                </div>
+
+                                <!-- Tricolor Divider Line -->
+                                <div class="tricolor-divider">
+                                    <div class="saffron"></div>
+                                    <div class="white"></div>
+                                    <div class="green"></div>
+                                </div>
+
+                                <!-- Main Content Area -->
+                                <div class="flex w-full flex-grow px-2 pb-2 justify-between items-start">
+                                    <!-- Student Information -->
+                                    <div class="flex flex-col text-xs space-y-1 flex-grow pr-2 text-gray-700">
+                                        <p><span class="font-semibold">Name:</span> <span id="cardName">Anil Kumar</span></p>
+                                        <p><span class="font-semibold">Class:</span> <span id="cardClass">12</span></p>
+                                        <p><span class="font-semibold">Roll No.:</span> <span id="cardRollNumber">55</span></p>
+                                        <p><span class="font-semibold">D.O.B:</span> <span id="cardDob">2000-05-09</span></p>
+                                        <p><span class="font-semibold">Year:</span> <span id="cardYear">2025</span></p>
+                                    </div>
+
+                                    <!-- Photo and Signature Section -->
+                                    <div class="flex flex-col items-center justify-start h-full pl-2">
+                                        <!-- Student Photo -->
+                                        <div class="student-photo-container mb-2">
+                                            <img id="cardStudentPhoto" src="https://placehold.co/80x80/E0E7FF/4F46E5?text=Photo" 
+                                                 alt="Student Photo" class="w-full h-full object-cover rounded-lg" 
+                                                 onerror="this.onerror=null;this.src='https://placehold.co/80x80/E0E7FF/4F46E5?text=Photo';">
+                                        </div>
+                                        <p class="text-gray-500 text-xs text-center mb-3">Student Photo</p>
+
+                                        <!-- Principal Signature -->
+                                        <div class="principal-signature-area mt-auto">
+                                            <img id="cardPrincipalSignature" src="https://placehold.co/100x40/E0E7FF/4F46E5?text=Signature" 
+                                                 alt="Principal Signature" 
+                                                 onerror="this.onerror=null;this.src='https://placehold.co/100x40/E0E7FF/4F46E5?text=Signature';">
+                                            <p class="text-xs font-bold text-gray-600">Principal Signature</p>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- Bottom Strip -->
+                                <div class="absolute bottom-0 left-0 w-full bg-gradient-to-r from-blue-900 to-indigo-900 text-white text-xs py-2 px-2 font-medium flex justify-center items-center text-center rounded-b-lg">
+                                    <span id="cardAddressMobile">Address: N. C. College (Karimganj, Assam) — Mobile: 9162830269</span>
+                                </div>
+                            </div>
+
+                            <!-- Download Button -->
+                            <button id="downloadCardButton" class="btn-gradient text-white font-bold py-4 px-8 rounded-full mt-8 flex items-center gap-3 text-lg tooltip" data-tooltip="Download as PNG and PDF">
+                                <i class="fas fa-download"></i>
+                                Download ID Card
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Features Section -->
+        <div class="max-w-7xl mx-auto mt-16 section-enter">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl font-bold text-white mb-4">Why Choose Our Generator?</h2>
+                <p class="text-white opacity-80">Professional quality with modern design elements</p>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <div class="glass rounded-2xl p-6 card-hover text-center">
+                    <div class="text-4xl mb-4">
+                        <i class="fas fa-magic text-yellow-400"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold text-white mb-2">Modern Design</h3>
+                    <p class="text-white opacity-75">Beautiful gradients and professional layouts</p>
+                </div>
+                
+                <div class="glass rounded-2xl p-6 card-hover text-center">
+                    <div class="text-4xl mb-4">
+                        <i class="fas fa-bolt text-blue-400"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold text-white mb-2">Instant Preview</h3>
+                    <p class="text-white opacity-75">See changes in real-time as you type</p>
+                </div>
+                
+                <div class="glass rounded-2xl p-6 card-hover text-center">
+                    <div class="text-4xl mb-4">
+                        <i class="fas fa-download text-green-400"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold text-white mb-2">Multiple Formats</h3>
+                    <p class="text-white opacity-75">Download as PNG and PDF formats</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- HTML2Canvas for capturing DOM as image -->
+    <script src="https://cdn.jsdelivr.net/npm/html2canvas@1.4.1/dist/html2canvas.min.js"></script>
+    <!-- jsPDF for generating PDF -->
+    <script src="https://cdn.jsdelivr.net/npm/jspdf@2.5.1/dist/jspdf.umd.min.js"></script>
+    <!-- Custom JS -->
+    <script src="script.js"></script>
+</body>
+</html>
