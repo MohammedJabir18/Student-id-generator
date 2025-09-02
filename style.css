@@ -364,3 +364,132 @@ body {
     background: rgba(255, 255, 255, 0.5);
 }
 
+/* Social Media Links Styles */
+.social-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 12px 20px;
+    border-radius: 50px;
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 14px;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+    border: 2px solid transparent;
+    margin: 4px;
+}
+
+.social-link i {
+    font-size: 16px;
+    width: 20px;
+    text-align: center;
+}
+
+.social-link:hover {
+    transform: translateY(-2px);
+    text-decoration: none;
+}
+
+/* Twitter/X */
+.social-link.twitter {
+    background: linear-gradient(135deg, #1DA1F2, #0d8bd9);
+    color: white;
+}
+
+.social-link.twitter:hover {
+    box-shadow: 0 8px 25px rgba(29, 161, 242, 0.4);
+    color: white;
+}
+
+/* LinkedIn */
+.social-link.linkedin {
+    background: linear-gradient(135deg, #0077B5, #005885);
+    color: white;
+}
+
+.social-link.linkedin:hover {
+    box-shadow: 0 8px 25px rgba(0, 119, 181, 0.4);
+    color: white;
+}
+
+/* Instagram */
+.social-link.instagram {
+    background: linear-gradient(135deg, #E4405F, #833AB4, #F77737);
+    color: white;
+}
+
+.social-link.instagram:hover {
+    box-shadow: 0 8px 25px rgba(228, 64, 95, 0.4);
+    color: white;
+}
+
+/* Portfolio Website */
+.social-link.website {
+    background: linear-gradient(135deg, #667eea, #764ba2);
+    color: white;
+}
+
+.social-link.website:hover {
+    box-shadow: 0 8px 25px rgba(102, 126, 234, 0.4);
+    color: white;
+}
+
+/* Email */
+.social-link.email {
+    background: linear-gradient(135deg, #ff6b6b, #ee5a24);
+    color: white;
+}
+
+.social-link.email:hover {
+    box-shadow: 0 8px 25px rgba(255, 107, 107, 0.4);
+    color: white;
+}
+
+/* Shine effect for social links */
+.social-link:before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+    transition: left 0.5s;
+}
+
+.social-link:hover:before {
+    left: 100%;
+}
+
+/* Responsive design for social links */
+@media (max-width: 768px) {
+    .social-link {
+        padding: 10px 16px;
+        font-size: 13px;
+        margin: 2px;
+    }
+    
+    .social-link i {
+        font-size: 14px;
+        width: 18px;
+    }
+}
+
+@media (max-width: 480px) {
+    .social-link {
+        padding: 8px 12px;
+        font-size: 12px;
+        gap: 6px;
+    }
+    
+    .social-link i {
+        font-size: 12px;
+        width: 16px;
+    }
+    
+    .social-link span {
+        display: none;
+    }
+}
